@@ -7,9 +7,9 @@ export const App: FC = () => {
   const [isLogged, setIsLogged] = useState(false);
 
   const handleSubmit = (values: FormValues) => {
-    Promise.resolve()
-      .then((res) => {
-        console.log(res, 'data fetched from API');
+    axios.post(`${import.meta.env.VITE_TODOS_API_URL}/auth/login`, values)
+      .then(({ data }) => {
+        console.log(data.token, 'data fetched from API');
         setIsLogged(true);
       })
       .catch((error) => {
@@ -22,7 +22,7 @@ export const App: FC = () => {
       <section className="section">
         <main className="main">
 
-          {isLogged ? <h1 className="form__heading">You are logged in!</h1>
+          {isLogged ? <h1 className="form__heading">Welcome, You are logged in!</h1>
             : <MyForm onSubmit={handleSubmit} />}
 
         </main>

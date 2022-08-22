@@ -10,12 +10,12 @@ export interface FormValues {
   discordId: string
 }
 
-const initialValues: FormValues = {
+export const initialValues: FormValues = {
   email: '',
   discordId: '',
 };
 
-const validationSchema = Yup.object({
+export const validationSchema = Yup.object({
   email: Yup.string().email().required('Required'),
   discordId: Yup.string()
     .min(17, 'must be at least 17 characters long').required('Required'),
